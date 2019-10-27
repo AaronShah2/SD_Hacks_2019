@@ -32,13 +32,6 @@ class Ui_MainWindow(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         
-        self.Class1 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.Class1.setObjectName("Class1")
-        self.verticalLayout.addWidget(self.Class1)
-        
-        self.Class2 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.Class2.setObjectName("CLass2")
-        self.verticalLayout.addWidget(self.Class2)
         
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -73,28 +66,40 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.welcome_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">Welcome to your Dashboard!</span></p></body></html>"))
         self.classLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Your Classes</span></p></body></html>"))
-        self.Class1.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Empty 1</span></p></body></html>"))
-        self.Class2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Empty 2</span></p></body></html>"))
+       
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuEdit.setTitle(_translate("MainWindow", "Edit"))
         self.actionOpen_Course.setText(_translate("MainWindow", "Open Course "))
         self.actionNew_Course.setText(_translate("MainWindow", "New Course"))
 
 
-    def clicked(self,text): #test action, not for real use
-        self.Class1.setText(text)
 
 
     def addNewElement(self,className): #adds class name to classDir
         cla = open("classDir.txt","w+")
         cla.write(className+"\n")
-        cla.close()
+        cla.close() #adding class name to file
+
+
+        self.labels = []
+        self.labels.append(QtWidgets.QLabel(self.verticalLayoutWidget))
+        self.labels[0].setObjectName(className)
+        self.labels[0].setText(className)
+        self.verticalLayout.addWidget(self.labels[0])
+
+        
         
         clas = open("classDir.txt","r")
         for line in clas:
             print(line)
             
         clas.close()
+        
+
+        
+            
+
+    
         
 
 
