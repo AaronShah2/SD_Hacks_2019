@@ -1,0 +1,108 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'qtInterface1.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+import csv
+import numpy as np
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 627)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.welcome_label = QtWidgets.QLabel(self.centralwidget)
+        self.welcome_label.setGeometry(QtCore.QRect(10, 10, 321, 111))
+        self.welcome_label.setObjectName("welcome_label")
+        self.classLabel = QtWidgets.QLabel(self.centralwidget)
+        self.classLabel.setGeometry(QtCore.QRect(60, 90, 121, 41))
+        self.classLabel.setObjectName("classLabel")
+        
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(60, 140, 160, 131))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        
+        self.Class1 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.Class1.setObjectName("Class1")
+        self.verticalLayout.addWidget(self.Class1)
+        
+        self.Class2 = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.Class2.setObjectName("CLass2")
+        self.verticalLayout.addWidget(self.Class2)
+        
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
+        self.menubar.setObjectName("menubar")
+        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile.setObjectName("menuFile")
+        self.menuEdit = QtWidgets.QMenu(self.menubar)
+        self.menuEdit.setObjectName("menuEdit")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.actionOpen_Course = QtWidgets.QAction(MainWindow)
+        self.actionOpen_Course.setObjectName("actionOpen_Course")
+        self.actionNew_Course = QtWidgets.QAction(MainWindow)
+        self.actionNew_Course.setObjectName("actionNew_Course")
+        self.menuFile.addAction(self.actionNew_Course)
+        self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuEdit.menuAction())
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        ###When the New_Course action happens...
+        ###clicked() happens
+        
+        self.actionNew_Course.triggered.connect(lambda: self.addNewElement("click!"))
+        
+        ###
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.welcome_label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">Welcome to your Dashboard!</span></p></body></html>"))
+        self.classLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Your Classes</span></p></body></html>"))
+        self.Class1.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Empty 1</span></p></body></html>"))
+        self.Class2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Empty 2</span></p></body></html>"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuEdit.setTitle(_translate("MainWindow", "Edit"))
+        self.actionOpen_Course.setText(_translate("MainWindow", "Open Course "))
+        self.actionNew_Course.setText(_translate("MainWindow", "New Course"))
+
+
+    def clicked(self,text): #test action, not for real use
+        self.Class1.setText(text)
+
+
+    def addNewElement(self,className): #adds class name to classDir
+        cla = open("classDir.txt","w+")
+        cla.write(className+"\n")
+        cla.close()
+        
+        clas = open("classDir.txt","r")
+        for line in clas:
+            print(line)
+            
+        clas.close()
+        
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
