@@ -21,7 +21,7 @@ def retrieve_captions(url):
     for full_line in en_caption_full_lines:
         num += 1
         i = 31 + len(str(num))
-        en_caption_lines.append(full_line[i:])
+        en_caption_lines.append(full_line[i:] + ' ')
 
     en_caption_paragraph = ''
     for en_caption_line in en_caption_lines:
