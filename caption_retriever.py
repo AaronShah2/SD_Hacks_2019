@@ -11,7 +11,7 @@ def retrieve_captions(url):
     The final character of each string is a standard period, ASCII 46.
     :param string url: URL of the YouTube video, the captions of which are retrieved.
     """
-    source = Youtube(url)
+    source = YouTube(url)
     en_caption = source.captions.get_by_language_code('en')
     en_caption_convert_to_srt = en_caption.generate_srt_captions()
     en_caption_full_lines = en_caption_convert_to_srt.split('\n\n')
