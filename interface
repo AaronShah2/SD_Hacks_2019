@@ -9,6 +9,7 @@
 import csv
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit
 
 
 class Ui_MainWindow(object):
@@ -75,7 +76,14 @@ class Ui_MainWindow(object):
 
 
 
+        
+
+            
     def addNewElement(self,className): #adds class name to classDir
+        #text,okPressed = QInputDialog.getText(self, "Course name", "Course name",QLineEdit.Normal,"")
+        #if okPressed:
+        #print(text)
+        
         cla = open("classDir.txt","w+")
         cla.write(className+"\n")
         cla.close() #adding class name to file
